@@ -62,7 +62,7 @@ namespace AutoBackupFolder
                 Thread thread = new Thread(BackupFolder);
                 thread.Start();
 
-                aTimer.Interval = 10 * 1000;
+                aTimer.Interval = Convert.ToInt32(sdInterval.Value) * 60 * 60 * 1000;
                 aTimer.Elapsed += aTimer_Elapsed;
                 aTimer.Start();
             }
