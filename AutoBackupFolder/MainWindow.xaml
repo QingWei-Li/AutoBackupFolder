@@ -1,8 +1,72 @@
 ﻿<Window x:Class="AutoBackupFolder.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
+        Title="文件自动备份器" Height="350" Width="525" MinHeight="350" MinWidth="525">
+    
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Height" Value="30"></Setter>
+            <Setter Property="Margin" Value="0 0 10 10"></Setter>
+        </Style>
+      
+        <Style TargetType="RowDefinition">
+            <Setter Property="Height" Value="30"></Setter>
+        </Style>
+       
+        <Style TargetType="Label">
+            <Setter Property="HorizontalAlignment" Value="Center"></Setter>
+            <Setter Property="VerticalAlignment" Value="Center"></Setter>
+        </Style>
+      
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="20"></Setter>
+        </Style>
+    </Window.Resources>
+    
+    <!--主界面-->
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Row="2" Grid.ColumnSpan="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition Width="100"></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+
+            <Label Grid.Row="0" Grid.Column="0">间隔时间 (min)</Label>
+            <Label Grid.Row="0" Grid.Column="2">最多备份文件数</Label>
+
+            <TextBox Grid.Row="0" Grid.Column="1" Name="tbIntervalMins"></TextBox>
+            <TextBox Grid.Row="0" Grid.Column="3" Name="tbMaxFileCount"></TextBox>
+        </Grid>
+
+        <Label Grid.Row="0" Grid.Column="0">待备份的文件夹</Label>
+        <Label Grid.Row="1" Grid.Column="0">备份文件保存至</Label>
+
+        <TextBox Grid.Row="0" Grid.Column="1" Name="tbFolderPath"></TextBox>
+        <TextBox Grid.Row="1" Grid.Column="1" Name="tbSavePath"></TextBox>
+
+        <DockPanel Grid.Row="4" Grid.Column="0">
+            <Button Content="开始" DockPanel.Dock="Top" Name="btnStart"></Button>
+            <Button Content="导出日志" DockPanel.Dock="Top" Name="btnExportLogs"></Button>
+            <Label DockPanel.Dock="Bottom" HorizontalAlignment="Left" VerticalAlignment="Bottom" Foreground="Gray">by Cinwell</Label>
+        </DockPanel>
+
+        <TextBox Grid.Row="4" Grid.Column="1" Height="auto" Name="tbLogs"></TextBox>
     </Grid>
 </Window>
