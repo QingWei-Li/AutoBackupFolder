@@ -153,13 +153,6 @@ namespace AutoBackupFolder
 
         void aTimer_Elapsed(object sender, System.Timers.ElapsedEventArgs e)
         {
-            DirectoryInfo theFolder = new DirectoryInfo(SavePath);
-            if (theFolder.GetFiles().Count() >= MaxFileCount)
-            {
-                FileInfo[] fileInfo = theFolder.GetFiles();
-                fileInfo[0].Delete();
-            }
-
             BackupFolder();
         }
         private static void SelectFolderPath(object sender)
@@ -174,6 +167,14 @@ namespace AutoBackupFolder
         }
         private void BackupFolder()
         {
+            //确保当前目录下的备份文件符合设置的最大数
+            DirectoryInfo theFolder = new DirectoryInfo(SavePath);
+            while (theFolder.GetFiles().Count() >= MaxFileCount)
+            {
+                FileInfo[] fileInfo = theFolder.GetFiles();
+                fileInfo[0].Delete();
+            }
+
             string savePath = SavePath + "FolderTemp" + System.IO.Path.DirectorySeparatorChar;
             string saveZip = SavePath + DateTime.Now.ToString("yyMMdd-HHmmss") + ".zip";
 
