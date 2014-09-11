@@ -77,5 +77,6 @@
         </DockPanel>
 
         <TextBox Grid.Row="4" Grid.Column="1" Height="auto" Name="tbLogs" IsReadOnly="True" ScrollViewer.VerticalScrollBarVisibility="Auto"></TextBox>
+
     </Grid>
 </Window>
